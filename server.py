@@ -7,10 +7,8 @@ The process:
     The machine returns the prediction
     The server sends the prediction back to the client, where the app decides what to do with the prediction(or if an error occured)
 """
-from ast import For
 import socket
 from _thread import *
-import time
 import ClassModule
 AData = ""
 FORMAT = "utf-8"
@@ -70,9 +68,9 @@ def HandleConnection(conn):
                 print(e)
             
             if not NData and not GettingAnswer:
-                print(NData.decode(FORMAT))
+                print(NData.decode('utf-8'))
                 print("FINISHED")
-                print(NData.decode(FORMAT))
+                print(NData.decode('utf-8'))
                 TypeConn += 1
                 DataArr = AData.split('!GETNUM!')
                 ByteLength = DataArr[0]
@@ -86,7 +84,7 @@ def HandleConnection(conn):
                 Data += NData
                 """
 
-                AData += NData.decode(FORMAT)
+                AData += NData.decode('utf-8')
                 print("recv: " + str(len(AData)))
 
             
@@ -99,7 +97,7 @@ def HandleConnection(conn):
     try:
         ReturnData = ClassModule.FindClass(AData, type="bytes")
         print(ReturnData)
-        conn.sendall(ReturnData.encode(FORMAT))
+        conn.sendall(ReturnData.encode('utf-8'))
         conn.close()
     except Exception as e:
         print('an error has occured') 
@@ -138,7 +136,7 @@ def HandleConnection(conn):
             conn.close()
     """
 
-print(f"{time.time()}")
+
 
 def StartDataServer():
     global connections
