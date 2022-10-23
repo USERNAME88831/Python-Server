@@ -12,7 +12,7 @@ from _thread import *
 import ClassModule
 AData = ""
 FORMAT = "utf-8"
-ip = "10.0.0.251"
+ip = input("enter an IP") # changed for security
 port = 3000
 connections = 0
 
